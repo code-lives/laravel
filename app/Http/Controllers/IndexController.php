@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Paginator;
 use App\Models\Faq;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -9,10 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
+
     public function onefirst(Request $request)
     {
-        // 查询单条数据返回
-        $data = Faq::find(1);
+        $data = Faq::first();
         return $data;
     }
     // ORM 一对一查询 预加载 user 表信息 
@@ -44,13 +45,12 @@ class IndexController extends Controller
     {
         return Faq::with('userbelongto')->where("uid", 3)->first();
     }
+    // belongsToMany 多对多查询 
     public function userbelongtomany()
     {
-
         // DB::connection()->enableQueryLog();     // 开启查询日志
         $data = User::with('areasbelongtomany')->where("id", 139276)->get(["*", 'id as uid']);
         // $logs = DB::getQueryLog();   // 获取查询日志
-
         // dd($logs);               // 即可查看执行的sql，传入的参数等等
         dd($data->Toarray());
     }

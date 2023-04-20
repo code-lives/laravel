@@ -7,5 +7,38 @@ services:
     ports:
       - 80:80
       - 443:443
+      - 1215:1215
     volumes:
       - $PWD:/var/www/html
+  elasticsearch:
+    restart: always #docker 启动这个容器也跟着启动
+    image: elasticsearch:8.6.0 #容器名字对应版本好
+    container_name: elasticsearch #容器的名称
+    hostname: es-master
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+    volumes:
+      - $PWD/es/data/:/usr/share/elasticsearch/data
+      - $PWD/es/logs/:/usr/share/elasticsearch/logs/
+      - $PWD/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    command: >
+      bash -c "
+        ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v8.6.0/elasticsearch-analysis-ik-8.6.0.zip;
+        /usr/local/bin/docker-entrypoint.sh
+      "
+  kibana:
+    restart: always #docker 启动这个容器也跟着启动
+    image: kibana:8.6.0 #容器名字对应版本好
+    container_name: kibana #容器的名称
+    ports:
+      - "5601:5601"
+    environment:
+      - "TZ=Asia/Shanghai"
+    volumes:
+      - $PWD/kibana.yml:/usr/share/kibana/config/kibana.yml
+    depends_on:
+      - elasticsearch
