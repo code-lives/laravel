@@ -30,6 +30,95 @@ redis、mysql、elasticsearch、rabbitmq、swoole、workerman
     Route::get("es/delete", [ElasticSearch::class, "esDelete"]);
 ```
 
+### 分词
+
+```php
+use Elasticsearch\ClientBuilder;
+
+$client = ClientBuilder::create()->build();
+
+// 创建索引
+$params = [
+    'index' => 'my_index',
+    'body' => [
+        'settings' => [
+            'analysis' => [
+                'analyzer' => [
+                    'ik_max_word' => [
+                        'tokenizer' => 'ik_max_word',
+                    ],
+                ],
+            ],
+        ],
+        'mappings' => [
+            'properties' => [
+                'title' => [
+                    'type' => 'text',
+                    'analyzer' => 'ik_max_word',
+                ],
+                'content' => [
+                    'type' => 'text',
+                    'analyzer' => 'ik_max_word',
+                ],
+            ],
+        ],
+    ],
+];
+
+$client->indices()->create($params);
+
+// 添加文档
+$params = [
+    'index' => 'my_index',
+    'id' => '1',
+    'body' => [
+        'title' => '这是一个测试标题',
+        'content' => '这是一个测试内容，包含一些关键词：测试、标题、内容',
+    ],
+];
+
+$client->index($params);
+
+// 更新文档
+$params = [
+    'index' => 'my_index',
+    'id' => '1',
+    'body' => [
+        'doc' => [
+            'title' => '这是一个更新后的标题',
+            'content' => '这是一个更新后的内容，包含一些关键词：更新、标题、内容',
+        ],
+    ],
+];
+
+$client->update($params);
+
+// 删除文档
+$params = [
+    'index' => 'my_index',
+    'id' => '1',
+];
+
+$client->delete($params);
+
+// 搜索文档
+$params = [
+    'index' => 'my_index',
+    'body' => [
+        'query' => [
+            'multi_match' => [
+                'query' => '测试标题',
+                'fields' => ['title', 'content'],
+                'analyzer' => 'ik_max_word',
+            ],
+        ],
+    ],
+];
+
+$response = $client->search($params);
+
+```
+
 ### 5.rabbitmq
 
 ### 6.swoole
