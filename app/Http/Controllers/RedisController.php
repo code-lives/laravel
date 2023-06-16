@@ -14,7 +14,6 @@ class RedisController extends Controller
         $redis->transaction();
         try {
             $redis->set('user', 1);
-            throw new \Exception("Error Processing Request", 1);
             $redis->exec();
             echo "success";
         } catch (\Exception $th) {

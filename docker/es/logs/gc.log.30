@@ -1,0 +1,85 @@
+[2023-06-15T08:29:12.138+0000][68][gc,init] CardTable entry size: 512
+[2023-06-15T08:29:12.140+0000][68][gc     ] Using G1
+[2023-06-15T08:29:12.188+0000][68][gc,init] Version: 19.0.1+10-21 (release)
+[2023-06-15T08:29:12.189+0000][68][gc,init] CPUs: 4 total, 4 available
+[2023-06-15T08:29:12.190+0000][68][gc,init] Memory: 7860M
+[2023-06-15T08:29:12.190+0000][68][gc,init] Large Page Support: Disabled
+[2023-06-15T08:29:12.191+0000][68][gc,init] NUMA Support: Disabled
+[2023-06-15T08:29:12.191+0000][68][gc,init] Compressed Oops: Enabled (32-bit)
+[2023-06-15T08:29:12.192+0000][68][gc,init] Heap Region Size: 4M
+[2023-06-15T08:29:12.192+0000][68][gc,init] Heap Min Capacity: 256M
+[2023-06-15T08:29:12.193+0000][68][gc,init] Heap Initial Capacity: 256M
+[2023-06-15T08:29:12.193+0000][68][gc,init] Heap Max Capacity: 256M
+[2023-06-15T08:29:12.193+0000][68][gc,init] Pre-touch: Enabled
+[2023-06-15T08:29:12.194+0000][68][gc,init] Parallel Workers: 4
+[2023-06-15T08:29:12.194+0000][68][gc,init] Concurrent Workers: 1
+[2023-06-15T08:29:12.195+0000][68][gc,init] Concurrent Refinement Workers: 4
+[2023-06-15T08:29:12.195+0000][68][gc,init] Periodic GC: Disabled
+[2023-06-15T08:29:12.196+0000][68][gc,metaspace] CDS archive(s) mapped at: [0x0000000800000000-0x0000000800c4f000-0x0000000800c4f000), size 12906496, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 0.
+[2023-06-15T08:29:12.197+0000][68][gc,metaspace] Compressed class space mapped at: 0x0000000801000000-0x0000000841000000, reserved size: 1073741824
+[2023-06-15T08:29:12.197+0000][68][gc,metaspace] Narrow klass base: 0x0000000800000000, Narrow klass shift: 0, Narrow klass range: 0x100000000
+[2023-06-15T08:29:12.336+0000][68][gc,start    ] GC(0) Pause Young (Normal) (G1 Evacuation Pause)
+[2023-06-15T08:29:12.337+0000][68][gc,task     ] GC(0) Using 4 workers of 4 for evacuation
+[2023-06-15T08:29:12.337+0000][68][gc,age      ] GC(0) Desired survivor size 2097152 bytes, new threshold 15 (max threshold 15)
+[2023-06-15T08:29:12.341+0000][68][gc,phases   ] GC(0)   Pre Evacuate Collection Set: 0.2ms
+[2023-06-15T08:29:12.342+0000][68][gc,phases   ] GC(0)   Merge Heap Roots: 1.4ms
+[2023-06-15T08:29:12.342+0000][68][gc,phases   ] GC(0)   Evacuate Collection Set: 0.9ms
+[2023-06-15T08:29:12.343+0000][68][gc,phases   ] GC(0)   Post Evacuate Collection Set: 0.3ms
+[2023-06-15T08:29:12.343+0000][68][gc,phases   ] GC(0)   Other: 1.3ms
+[2023-06-15T08:29:12.344+0000][68][gc,age      ] GC(0) Age table with threshold 15 (max threshold 15)
+[2023-06-15T08:29:12.345+0000][68][gc,age      ] GC(0) - age   1:     812880 bytes,     812880 total
+[2023-06-15T08:29:12.346+0000][68][gc,heap     ] GC(0) Eden regions: 3->0(11)
+[2023-06-15T08:29:12.346+0000][68][gc,heap     ] GC(0) Survivor regions: 0->1(1)
+[2023-06-15T08:29:12.347+0000][68][gc,heap     ] GC(0) Old regions: 0->0
+[2023-06-15T08:29:12.347+0000][68][gc,heap     ] GC(0) Archive regions: 2->2
+[2023-06-15T08:29:12.348+0000][68][gc,heap     ] GC(0) Humongous regions: 0->0
+[2023-06-15T08:29:12.348+0000][68][gc,metaspace] GC(0) Metaspace: 612K(768K)->612K(768K) NonClass: 572K(640K)->572K(640K) Class: 39K(128K)->39K(128K)
+[2023-06-15T08:29:12.349+0000][68][gc          ] GC(0) Pause Young (Normal) (G1 Evacuation Pause) 15M->4M(256M) 12.967ms
+[2023-06-15T08:29:12.349+0000][68][gc,cpu      ] GC(0) User=0.01s Sys=0.01s Real=0.01s
+[2023-06-15T08:29:12.350+0000][68][safepoint   ] Safepoint "G1CollectForAllocation", Time since last: 131063607 ns, Reaching safepoint: 246897 ns, At safepoint: 13981286 ns, Total: 14228183 ns
+[2023-06-15T08:29:12.762+0000][68][safepoint   ] Safepoint "ICBufferFull", Time since last: 412200441 ns, Reaching safepoint: 200389 ns, At safepoint: 28707 ns, Total: 229096 ns
+[2023-06-15T08:29:13.242+0000][68][safepoint   ] Safepoint "ICBufferFull", Time since last: 479569039 ns, Reaching safepoint: 324128 ns, At safepoint: 57121 ns, Total: 381249 ns
+[2023-06-15T08:29:13.321+0000][68][gc,start    ] GC(1) Pause Young (Normal) (G1 Evacuation Pause)
+[2023-06-15T08:29:13.322+0000][68][gc,task     ] GC(1) Using 4 workers of 4 for evacuation
+[2023-06-15T08:29:13.322+0000][68][gc,age      ] GC(1) Desired survivor size 4194304 bytes, new threshold 15 (max threshold 15)
+[2023-06-15T08:29:13.327+0000][68][gc,phases   ] GC(1)   Pre Evacuate Collection Set: 0.1ms
+[2023-06-15T08:29:13.328+0000][68][gc,phases   ] GC(1)   Merge Heap Roots: 0.0ms
+[2023-06-15T08:29:13.328+0000][68][gc,phases   ] GC(1)   Evacuate Collection Set: 2.6ms
+[2023-06-15T08:29:13.329+0000][68][gc,phases   ] GC(1)   Post Evacuate Collection Set: 0.6ms
+[2023-06-15T08:29:13.330+0000][68][gc,phases   ] GC(1)   Other: 1.7ms
+[2023-06-15T08:29:13.331+0000][68][gc,age      ] GC(1) Age table with threshold 15 (max threshold 15)
+[2023-06-15T08:29:13.332+0000][68][gc,age      ] GC(1) - age   1:    5485488 bytes,    5485488 total
+[2023-06-15T08:29:13.333+0000][68][gc,age      ] GC(1) - age   2:     405648 bytes,    5891136 total
+[2023-06-15T08:29:13.334+0000][68][gc,heap     ] GC(1) Eden regions: 11->0(36)
+[2023-06-15T08:29:13.335+0000][68][gc,heap     ] GC(1) Survivor regions: 1->2(2)
+[2023-06-15T08:29:13.335+0000][68][gc,heap     ] GC(1) Old regions: 0->0
+[2023-06-15T08:29:13.336+0000][68][gc,heap     ] GC(1) Archive regions: 2->2
+[2023-06-15T08:29:13.337+0000][68][gc,heap     ] GC(1) Humongous regions: 0->0
+[2023-06-15T08:29:13.338+0000][68][gc,metaspace] GC(1) Metaspace: 10092K(10432K)->10092K(10432K) NonClass: 8891K(9024K)->8891K(9024K) Class: 1200K(1408K)->1200K(1408K)
+[2023-06-15T08:29:13.339+0000][68][gc          ] GC(1) Pause Young (Normal) (G1 Evacuation Pause) 48M->9M(256M) 18.338ms
+[2023-06-15T08:29:13.340+0000][68][gc,cpu      ] GC(1) User=0.01s Sys=0.00s Real=0.02s
+[2023-06-15T08:29:13.341+0000][68][safepoint   ] Safepoint "G1CollectForAllocation", Time since last: 78823950 ns, Reaching safepoint: 138897 ns, At safepoint: 20102964 ns, Total: 20241861 ns
+[2023-06-15T08:29:13.829+0000][68][safepoint   ] Safepoint "ICBufferFull", Time since last: 487564541 ns, Reaching safepoint: 426271 ns, At safepoint: 32852 ns, Total: 459123 ns
+[2023-06-15T08:29:14.248+0000][68][safepoint   ] Safepoint "ICBufferFull", Time since last: 418358593 ns, Reaching safepoint: 253366 ns, At safepoint: 7044 ns, Total: 260410 ns
+[2023-06-15T08:29:14.582+0000][68][safepoint   ] Safepoint "ICBufferFull", Time since last: 333931576 ns, Reaching safepoint: 402299 ns, At safepoint: 37336 ns, Total: 439635 ns
+[2023-06-15T08:29:14.997+0000][68][gc,start    ] GC(2) Pause Young (Normal) (G1 Evacuation Pause)
+[2023-06-15T08:29:14.998+0000][68][gc,task     ] GC(2) Using 4 workers of 4 for evacuation
+[2023-06-15T08:29:14.999+0000][68][gc,age      ] GC(2) Desired survivor size 10485760 bytes, new threshold 15 (max threshold 15)
+[2023-06-15T08:29:15.018+0000][68][gc,phases   ] GC(2)   Pre Evacuate Collection Set: 0.2ms
+[2023-06-15T08:29:15.021+0000][68][gc,phases   ] GC(2)   Merge Heap Roots: 0.1ms
+[2023-06-15T08:29:15.025+0000][68][gc,phases   ] GC(2)   Evacuate Collection Set: 9.5ms
+[2023-06-15T08:29:15.028+0000][68][gc,phases   ] GC(2)   Post Evacuate Collection Set: 5.3ms
+[2023-06-15T08:29:15.030+0000][68][gc,phases   ] GC(2)   Other: 4.7ms
+[2023-06-15T08:29:15.032+0000][68][gc,age      ] GC(2) Age table with threshold 15 (max threshold 15)
+[2023-06-15T08:29:15.033+0000][68][gc,age      ] GC(2) - age   1:    7030264 bytes,    7030264 total
+[2023-06-15T08:29:15.034+0000][68][gc,age      ] GC(2) - age   2:    5399240 bytes,   12429504 total
+[2023-06-15T08:29:15.036+0000][68][gc,age      ] GC(2) - age   3:     404248 bytes,   12833752 total
+[2023-06-15T08:29:15.037+0000][68][gc,heap     ] GC(2) Eden regions: 36->0(34)
+[2023-06-15T08:29:15.038+0000][68][gc,heap     ] GC(2) Survivor regions: 2->4(5)
+[2023-06-15T08:29:15.039+0000][68][gc,heap     ] GC(2) Old regions: 0->0
+[2023-06-15T08:29:15.040+0000][68][gc,heap     ] GC(2) Archive regions: 2->2
+[2023-06-15T08:29:15.041+0000][68][gc,heap     ] GC(2) Humongous regions: 0->0
+[2023-06-15T08:29:15.042+0000][68][gc,metaspace] GC(2) Metaspace: 18358K(18880K)->18358K(18880K) NonClass: 16299K(16576K)->16299K(16576K) Class: 2059K(2304K)->2059K(2304K)
+[2023-06-15T08:29:15.044+0000][68][gc          ] GC(2) Pause Young (Normal) (G1 Evacuation Pause) 153M->16M(256M) 46.488ms
+[2023-06-15T08:29:15.046+0000][68][gc,cpu      ] GC(2) User=0.04s Sys=0.00s Real=0.05s
+[2023-06-15T08:29:15.047+0000][68][safepoint   ] Safepoint "G1CollectForAllocation", Time since last: 414678054 ns, Reaching safepoint: 295347 ns, At safepoint: 49547366 ns, Total: 49842713 ns

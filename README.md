@@ -1,10 +1,8 @@
-# 使用技术
+# 使用记录
 
 redis、mysql、elasticsearch、rabbitmq、swoole、workerman
 
-# 开发流程
-
-### 1.使用 orm 对数据库的各种操作（模型关联）
+## 1.使用 ORM 对数据库的各种操作（模型关联）
 
 ```php
     //web.php
@@ -16,116 +14,31 @@ redis、mysql、elasticsearch、rabbitmq、swoole、workerman
     Route::get("orm/userbelongtomany", [IndexController::class, "userbelongtomany"]);
 ```
 
-### 2.redis 事务
+## ElasticSearch 分词
 
-### 3.mysql+redis 事务封装
-
-### 4.elasticsearch 使用的方式
+### 安装
 
 ```php
-    //web.php
-    Route::get("es/info", [ElasticSearch::class, "infos"]);
-    Route::get("es/create", [ElasticSearch::class, "esCreate"]);
-    Route::get("es/query", [ElasticSearch::class, "esQuery"]);
-    Route::get("es/delete", [ElasticSearch::class, "esDelete"]);
+composer require elasticsearch/elasticsearch
 ```
-
-### 分词
 
 ```php
-use Elasticsearch\ClientBuilder;
-
-$client = ClientBuilder::create()->build();
-
-// 创建索引
-$params = [
-    'index' => 'my_index',
-    'body' => [
-        'settings' => [
-            'analysis' => [
-                'analyzer' => [
-                    'ik_max_word' => [
-                        'tokenizer' => 'ik_max_word',
-                    ],
-                ],
-            ],
-        ],
-        'mappings' => [
-            'properties' => [
-                'title' => [
-                    'type' => 'text',
-                    'analyzer' => 'ik_max_word',
-                ],
-                'content' => [
-                    'type' => 'text',
-                    'analyzer' => 'ik_max_word',
-                ],
-            ],
-        ],
-    ],
-];
-
-$client->indices()->create($params);
-
-// 添加文档
-$params = [
-    'index' => 'my_index',
-    'id' => '1',
-    'body' => [
-        'title' => '这是一个测试标题',
-        'content' => '这是一个测试内容，包含一些关键词：测试、标题、内容',
-    ],
-];
-
-$client->index($params);
-
-// 更新文档
-$params = [
-    'index' => 'my_index',
-    'id' => '1',
-    'body' => [
-        'doc' => [
-            'title' => '这是一个更新后的标题',
-            'content' => '这是一个更新后的内容，包含一些关键词：更新、标题、内容',
-        ],
-    ],
-];
-
-$client->update($params);
-
-// 删除文档
-$params = [
-    'index' => 'my_index',
-    'id' => '1',
-];
-
-$client->delete($params);
-
-// 搜索文档
-$params = [
-    'index' => 'my_index',
-    'body' => [
-        'query' => [
-            'multi_match' => [
-                'query' => '测试标题',
-                'fields' => ['title', 'content'],
-                'analyzer' => 'ik_max_word',
-            ],
-        ],
-    ],
-];
-
-$response = $client->search($params);
-
+    Route::get("es/info", [ElasticSearch::class, "infos"]); //ES信息
+    Route::get("es/create_ik", [ElasticSearch::class, "esCreateIk"]); // 创建分词索引
+    Route::get("es/delete", [ElasticSearch::class, "esDelete"]); //删除索引的里面的某条数据
+    Route::get("es/indexDelete", [ElasticSearch::class, "indexDelete"]); //删除索引
+    Route::get("es/esCreateIkData", [ElasticSearch::class, "esCreateIkData"]); //插入数据
+    Route::get("es/eaCreateIkDataBulk", [ElasticSearch::class, "eaCreateIkDataBulk"]); //批量插入数据
+    Route::get("es/esIkSearch", [ElasticSearch::class, "esIkSearch"]); //返回所有数据
+    Route::get("es/esIkSearchWhere", [ElasticSearch::class, "esIkSearchWhere"]); //加查询条件，返回所有数据
 ```
 
-### 5.rabbitmq
+## Rabbitmq
 
-### 6.swoole
+## Swoole
 
 ```
 composer require swooletw/laravel-swoole
-
 ```
 
-### 7.workerman
+## Workerman

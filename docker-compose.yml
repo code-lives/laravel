@@ -1,6 +1,6 @@
 version: "3.1"
 services:
-  nginx:
+  php:
     restart: always #docker 启动这个容器也跟着启动
     image: code-lives-php:7.4
     container_name: location #容器的名称
@@ -12,7 +12,10 @@ services:
       - $PWD:/var/www/html
   elasticsearch:
     restart: always #docker 启动这个容器也跟着启动
-    image: elasticsearch:8.6.0 #容器名字对应版本好
+    build:
+      context: docker
+      dockerfile: ESDockerfile
+    # image: elasticsearch:8.6.0 #容器名字对应版本好
     container_name: elasticsearch #容器的名称
     hostname: es-master
     ports:
@@ -22,12 +25,11 @@ services:
       - "discovery.type=single-node"
       - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
     volumes:
-      - $PWD/es/data/:/usr/share/elasticsearch/data
-      - $PWD/es/logs/:/usr/share/elasticsearch/logs/
-      - $PWD/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - $PWD/docker/es/data/:/usr/share/elasticsearch/data
+      - $PWD/docker/es/logs/:/usr/share/elasticsearch/logs/
+      - $PWD/docker/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     command: >
       bash -c "
-        ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v8.6.0/elasticsearch-analysis-ik-8.6.0.zip;
         /usr/local/bin/docker-entrypoint.sh
       "
   kibana:
@@ -39,6 +41,36 @@ services:
     environment:
       - "TZ=Asia/Shanghai"
     volumes:
-      - $PWD/kibana.yml:/usr/share/kibana/config/kibana.yml
+      - $PWD/docker/kibana.yml:/usr/share/kibana/config/kibana.yml
     depends_on:
       - elasticsearch
+  db:
+    image: mysql:5.7
+    restart: always
+    container_name: mysql #容器的名称
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    volumes:
+      - $PWD/docker/db/:/var/lib/mysql/
+      - $PWD/docker/mysqld/:/var/run/mysqld/
+      - $PWD/docker/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+  redis:
+    image: redis:6.2
+    restart: always
+    container_name: redis # redis 容器的名称
+    ports:
+      - "6379:6379"
+    volumes:
+      - $PWD/docker/redis/data/:/data
+      - $PWD/docker/redis.conf:/usr/local/etc/redis/redis.conf # redis.conf https://redis.io/topics/config
+    command:
+      /bin/bash -c "redis-server /usr/local/etc/redis/redis.conf"
+  rabbitmq:
+    image: rabbitmq:3.7.7-management
+    restart: always
+    container_name: rabbitmq #mysql 容器
+    ports:
+      - "15672:15672"
+      - "5672:5672"

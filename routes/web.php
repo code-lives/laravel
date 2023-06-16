@@ -28,10 +28,16 @@ Route::get("orm/userbelongto", [IndexController::class, "userbelongto"]);
 Route::get("orm/userbelongtomany", [IndexController::class, "userbelongtomany"]);
 
 // elasticsearch
-Route::get("es/info", [ElasticSearch::class, "infos"]);
-Route::get("es/create", [ElasticSearch::class, "esCreate"]);
-Route::get("es/query", [ElasticSearch::class, "esQuery"]);
-Route::get("es/delete", [ElasticSearch::class, "esDelete"]);
+Route::get("es/info", [ElasticSearch::class, "infos"]); //ES信息
+Route::get("es/create_ik", [ElasticSearch::class, "esCreateIk"]); // 创建分词索引
+Route::get("es/delete", [ElasticSearch::class, "esDelete"]); //删除索引的里面的某条数据
+Route::get("es/indexDelete", [ElasticSearch::class, "indexDelete"]); //删除索引
+Route::get("es/esCreateIkData", [ElasticSearch::class, "esCreateIkData"]); //插入数据
+Route::get("es/eaCreateIkDataBulk", [ElasticSearch::class, "eaCreateIkDataBulk"]); //批量插入数据
+Route::get("es/esIkSearch", [ElasticSearch::class, "esIkSearch"]); //返回所有数据
+Route::get("es/esIkSearchWhere", [ElasticSearch::class, "esIkSearchWhere"]); //加查询条件，返回所有数据
+
+
 
 // Redis队列
 Route::get("redis/transaction", [RedisController::class, "transaction"]);
